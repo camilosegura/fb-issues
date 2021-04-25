@@ -1,7 +1,17 @@
+import React from 'react';
 import logo from './logo.svg';
+import issueService from './services/issueService';
 import './App.css';
 
 function App() {
+  React.useEffect(() => {
+    issueService.search('Add version to protocol used between backend/frontend')
+      .then(({ data }) => {
+        console.log('data', data);
+      })
+      .catch(e => console.log('ERROR: ', e));
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">

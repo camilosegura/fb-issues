@@ -4,10 +4,10 @@ const { CancelToken } = axios;
 const GITHUB_HOST = 'https://api.github.com';
 
 export default class Http {
-  constructor({ host = GITHUB_HOST, ...config } ) {
+  constructor(host = GITHUB_HOST, ...config) {
     this.httpInstance = axios.create({
       baseURL: host,
-      ...config,
+      config,
     });
   }
 
@@ -47,5 +47,9 @@ export default class Http {
 
   setRequestInterceptor(callBack) {
     this.httpInstance.interceptors.request.use(callBack, (error) => Promise.reject(error))
+  }
+
+  setResponseInterceptor(callBack) {
+    this.httpInstance.interceptors.response.use(callBack, (error) => Promise.reject(error))
   }
 }
