@@ -27,6 +27,7 @@ function App() {
         >
           Learn React
         </a>
+        <button onClick={() => issueService.nextPage()}>Load</button>
       </header>
     </div>
   );

@@ -1,10 +1,17 @@
+import parseLinkHeader from 'parse-link-header';
 import Http from '../lib/http';
 
+const ISSUE_URL = '/repos/facebook/react/issues';
 class IssueService {
-  nextPage;
-  prevPage;
-  lastPage;
-  fisrtPage;
+  pagination = {
+    first: {
+      page: 1,
+    },
+    last: undefined,
+    next: undefined,
+    prev: undefined,
+  };
+  q;
 
   constructor() {
     this.httpInstance = new Http();
@@ -12,16 +19,25 @@ class IssueService {
   }
 
   setPagination(response) {
-    console.log('response', response);
-    console.log('nextPage', this.nextPage);
+    this.pagination = parseLinkHeader(response.headers.link);
+
     return response;
   }
 
-  search(query) {
-    const q = encodeURIComponent(query);
-    this.nextPage = '/repos/facebook/react/issues';
+  get(params) {
+    return this.httpInstance.get({ url: ISSUE_URL, params });
+  }
 
-    return this.httpInstance.get({ url: this.nextPage, params: { q }});
+  search(query) {
+    this.q = encodeURIComponent(query);
+
+    return this.get({ q: this.q });
+  }
+
+  nextPage() {
+    const page = this.pagination.next.page;
+
+    return this.get({ q: this.q, page });
   }
 }
 
