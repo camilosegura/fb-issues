@@ -7,13 +7,12 @@ import './App.css';
 function App() {
   const [collection, setCollection] = React.useState([]);
   const [value, setValue] = React.useState('');
-  const [open, setOpen] = React.useState(false);
+  const [totalRows, setTotalRows] = React.useState(0);
 
   function loadMoreRows() {
     issueService.nextPage()
       .then(({ data }) => {
         setCollection((prevCollection) => [...prevCollection, ...data.items]);
-        setOpen(true);
       })
       .catch(e => console.log('ERROR: ', e));
   }
@@ -22,12 +21,12 @@ function App() {
     issueService.search(text)
       .then(({ data }) => {
         setCollection(data.items);
-        setOpen(true);
+        setTotalRows(data.total_count);
       })
       .catch(e => console.log('ERROR: ', e));
   }
 
-  const throttleSearch = throttle(onSearch, 500);
+  const throttleSearch = throttle(onSearch, 1000);
 
   function search(event) {
     const text = event.target.value;
@@ -44,12 +43,18 @@ function App() {
 
   function onSelect(collectionIndex) {
     console.log('selected', collection[collectionIndex]);
-    setOpen(false);
   }
 
   return (
     <div className="App App-body">
-      <InfiniteSelect collection={collection} loadMoreRows={loadMoreRows} value={value}  onChange={search} onSelect={onSelect} open={open} />
+      <InfiniteSelect
+        collection={collection}
+        loadMoreRows={loadMoreRows}
+        value={value}
+        onChange={search}
+        onSelect={onSelect}
+        totalRows={totalRows}
+      />
     </div>
   );
 }

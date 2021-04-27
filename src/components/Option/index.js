@@ -1,10 +1,12 @@
 import './Option.css';
 
-export default function Option({ onClick, title, labels, number, state, createdAt, userAvatar }) {
+export default function Option({ onClick, title, labels, number, state, createdAt, userAvatar, id, index }) {
   return (
     <button
       className="option"
       onClick={onClick}
+      id={id}
+      data-index={index}
     >
       <div>
         <div className="avatar" style={{ backgroundImage: `url(${userAvatar})` }}></div>
