@@ -1,0 +1,27 @@
+.option {
+  display: flex;
+  border: none;
+  background-color: rgb(54, 52, 52);
+  color: aliceblue;
+  margin-bottom: 10px;
+}
+
+.option .label {
+  border-radius: 7px;
+  margin-left: 5px;
+  padding: 3px 5px;
+}
+
+.option .avatar {
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: inline-block;
+  height: 20px;
+  margin-right: 20px;
+  width: 20px;
+}
+
+.option .status {
+  margin: 2px 0;
+  text-align: left;
+}

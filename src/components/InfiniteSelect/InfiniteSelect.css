@@ -1,0 +1,18 @@
+.infinite-select {
+  position: relative;
+  width: calc(100% - 20px);
+}
+
+.infinite-select .input {
+  display: block;
+  width: 100%;
+}
+
+.infinite-select .options {
+  background-color: rgb(54, 52, 52);
+  max-height: 300px;
+  overflow: auto;
+  padding-top: 10px;
+  position: absolute;
+  width: 100%;
+}

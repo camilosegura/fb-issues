@@ -1,7 +1,7 @@
 import parseLinkHeader from 'parse-link-header';
 import Http from '../lib/http';
 
-const ISSUE_URL = '/repos/facebook/react/issues';
+const ISSUE_URL = '/search/issues';
 class IssueService {
   pagination = {
     first: {
@@ -25,19 +25,23 @@ class IssueService {
   }
 
   get(params) {
-    return this.httpInstance.get({ url: ISSUE_URL, params });
+    return this.httpInstance.get({ url: ISSUE_URL, params: { ...params, access_token: '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' } });
   }
 
   search(query) {
-    this.q = encodeURIComponent(query);
+    this.q = query;
 
-    return this.get({ q: this.q });
+    return this.get({ q: `${this.q} repo:facebook/react` });
   }
 
   nextPage() {
-    const page = this.pagination.next.page;
+    if (this.pagination.next) {
+      const page = this.pagination.next.page;
 
-    return this.get({ q: this.q, page });
+      return this.get({ q: this.q, page });
+    }
+
+    return Promise.resolve([]);
   }
 }
 
