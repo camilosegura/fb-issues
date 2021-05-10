@@ -25,7 +25,7 @@ class IssueService {
   }
 
   get(params) {
-    return this.httpInstance.get({ url: ISSUE_URL, params: { ...params, access_token: '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' } });
+    return this.httpInstance.get({ url: ISSUE_URL, params: { ...params, access_token: process.env.REACT_APP_TOKEN } });
   }
 
   search(query) {
