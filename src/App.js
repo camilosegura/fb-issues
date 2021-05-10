@@ -29,9 +29,11 @@ function App() {
   }
   const debounceLoadMoreRows = React.useCallback(debounce(loadMoreRows, 1000, {
     'trailing': true,
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }), []);
   const debounceSearch = React.useCallback(debounce(onSearch, 1000, {
     'trailing': true,
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }), []);
 
   function search(event) {
@@ -48,6 +50,7 @@ function App() {
     }
 
     return debounceSearch.cancel;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value])
 
   function onSelect(collectionIndex) {

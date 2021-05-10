@@ -31,6 +31,7 @@ export default function InfiniteSelect({ value, onChange, collection, onSelect, 
     for (const element of rootElement.current.children) {
       observer.observe(element);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [collection]);
 
   return (
