@@ -1,13 +1,8 @@
-import './Option.css';
+import './Selected.css';
 
-export default function Option({ onClick, title, labels, state, userAvatar, id, index }) {
+export default function Selected({ title, labels, state, userAvatar}) {
   return (
-    <button
-      className="option"
-      onClick={onClick}
-      id={id}
-      data-index={index}
-    >
+    <div className="selected">
       <div>
         <div className="avatar" style={{ backgroundImage: `url(${userAvatar})` }}></div>
         <p className="status">{state}</p>
@@ -27,6 +22,6 @@ export default function Option({ onClick, title, labels, state, userAvatar, id, 
         </div>
 
       </div>
-    </button>
+    </div>
   );
 }

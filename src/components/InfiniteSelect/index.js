@@ -2,7 +2,7 @@ import React from 'react';
 import Option from '../Option';
 import './InfiniteSelect.css';
 
-export default function InfiniteSelect({ value, onChange, collection, onSelect, loadMoreRows }) {
+export default function InfiniteSelect({ value, onChange, collection, onSelect, loadMoreRows, totalRows }) {
   const rootElement = React.useRef(null);
 
   const callback = (entries, observer) => {
@@ -12,7 +12,7 @@ export default function InfiniteSelect({ value, onChange, collection, onSelect, 
           observer.unobserve(entry.target);
 
           const index = entry.target.dataset.index;
-          const threshold = (collection.length - index) < 6;
+          const threshold = (collection.length - index) < 6 && totalRows - index > 6;
 
           if (threshold) {
             loadMoreRows();

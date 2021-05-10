@@ -25,7 +25,7 @@ class IssueService {
   }
 
   get(params) {
-    return this.httpInstance.get({ url: ISSUE_URL, params: { ...params, access_token: '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' } });
+    return this.httpInstance.get({ url: ISSUE_URL, params: { ...params, access_token: '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' } });
   }
 
   search(query) {
@@ -38,7 +38,7 @@ class IssueService {
     if (this.pagination.next) {
       const page = this.pagination.next.page;
 
-      return this.get({ q: this.q, page });
+      return this.get({ q: `${this.q} repo:facebook/react`, page });
     }
 
     return Promise.resolve([]);

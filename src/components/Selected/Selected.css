@@ -1,4 +1,4 @@
-.option {
+.selected {
   display: flex;
   border: none;
   background-color: rgb(54, 52, 52);
@@ -7,14 +7,14 @@
   text-align: left;
 }
 
-.option .label {
+.selected .label {
   border-radius: 7px;
   margin-left: 5px;
   padding: 3px 5px;
   display: inline-block;
 }
 
-.option .avatar {
+.selected .avatar {
   background-repeat: no-repeat;
   background-size: cover;
   display: inline-block;
@@ -23,11 +23,11 @@
   width: 20px;
 }
 
-.option .status {
+.selected .status {
   margin: 2px 0;
   text-align: left;
 }
 
-.option .container {
-  padding-left: 10px;
+.selected .container {
+  padding-left: 20px;
 }
