@@ -27,13 +27,13 @@ function App() {
       })
       .catch(e => console.log('ERROR: ', e));
   }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const debounceLoadMoreRows = React.useCallback(debounce(loadMoreRows, 1000, {
     'trailing': true,
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }), []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const debounceSearch = React.useCallback(debounce(onSearch, 1000, {
     'trailing': true,
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }), []);
 
   function search(event) {
